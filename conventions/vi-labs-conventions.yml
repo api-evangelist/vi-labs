@@ -1,0 +1,78 @@
+generated: '2026-09-02'
+method: derived
+source: well-known/vi-labs-oauth-authorization-server.json, mcp/vi-labs-mcp.yml
+name: Vi Labs API conventions
+description: >-
+  Cross-cutting runtime semantics for the only Vi Labs surface an agent can
+  reach: the OAuth-protected MCP endpoint on vi.co. Vi Labs publishes no
+  developer documentation, no OpenAPI and no error reference, so almost every
+  dimension below is `undocumented` rather than absent — that distinction is the
+  finding. Nothing here is inferred from a product page.
+auth:
+  style: 'OAuth 2.0 bearer (authorization_code + PKCE S256)'
+  header: 'Authorization: Bearer <token>'
+  scopes: [mcp]
+  documented: metadata-only
+  source: https://vi.co/.well-known/oauth-authorization-server
+idempotency:
+  supported: unknown
+  status: undocumented
+  note: >-
+    No idempotency key header is documented, and the MCP tool list is
+    authenticated-only, so whether any write tool is safely retryable cannot be
+    established from public evidence.
+pagination:
+  style: unknown
+  status: undocumented
+versioning:
+  style: 'path segment on the WordPress REST namespace (/wp-json/mcp)'
+  current: 'mcp namespace, unversioned'
+  note: >-
+    The MCP route namespace carries no version segment, unlike the sibling
+    WordPress namespaces (wp/v2, wp-abilities/v1). MCP protocol version is
+    negotiated in the initialize handshake, which is auth-gated here.
+error_envelope:
+  format: 'WordPress REST error object'
+  shape: '{"code": <string>, "message": <string>, "data": {"status": <int>}}'
+  problem_json: false
+  observed:
+  - status: 401
+    body: '{"code":"mcp_unauthorized","message":"MCP authentication required.","data":{"status":401}}'
+  - status: 401
+    body: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that.","data":{"status":401}}'
+rate_limit_signaling:
+  headers_observed: []
+  status: undocumented
+  note: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After header was returned on any
+    anonymous response from vi.co or api.vi.co. See rate-limits/vi-labs-rate-limits.yml.
+request_id_tracing:
+  headers_observed:
+  - cf-ray
+  note: >-
+    Cloudflare's cf-ray is the only correlation identifier returned; it is edge
+    infrastructure, not a provider-issued request id. api.vi.co returns
+    x-amzn-requestid / x-amz-apigw-id from AWS API Gateway, likewise
+    infrastructure-issued.
+dry_run_mode:
+  supported: unknown
+  status: undocumented
+reversibility:
+  grade: undocumented
+  write_surface: unknown
+  operations: []
+  note: >-
+    No reversal path can be recorded. Vi Labs documents no write operations
+    publicly; the MCP tool list that would reveal them requires a bearer token,
+    and the enterprise platform behind api.vi.co is entirely contract-gated.
+    This is deliberately NOT recorded as `na` — an unreadable write surface is
+    not the same finding as a read-only API, and asserting a reversal window the
+    provider never stated is the one error in this pipeline that could cost a
+    user real money.
+cross_links:
+  authentication: authentication/vi-labs-authentication.yml
+  scopes: scopes/vi-labs-scopes.yml
+  rate_limits: rate-limits/vi-labs-rate-limits.yml
+  mcp: mcp/vi-labs-mcp.yml
+x-evidence:
+  fetched: '2026-09-02'

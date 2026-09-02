@@ -1,0 +1,35 @@
+generated: '2026-09-02'
+method: probed
+source: https://vi.co/
+name: Vi Labs rate limits
+description: >-
+  Vi Labs publishes no developer documentation, so there is no documented rate
+  limit to record. Anonymous responses from both vi.co and api.vi.co were
+  inspected for runtime rate-limit signalling and none was present. The only
+  crawl guidance the company publishes anywhere is a Crawl-delay: 10 directive
+  in robots.txt, which governs crawlers, not API clients.
+limit_count: 0
+limits: []
+response_headers:
+  observed: []
+  checked:
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - RateLimit-Limit
+  - RateLimit-Remaining
+  - RateLimit-Reset
+  - Retry-After
+  note: None of these appeared on any anonymous response from vi.co, www.vi.co or api.vi.co.
+exhaustion_status_code: null
+related:
+  robots_crawl_delay: 10
+  robots_url: https://vi.co/robots.txt
+x-evidence:
+  fetched: '2026-09-02'
+  probes:
+  - url: https://vi.co/robots.txt
+    status: 200
+  - url: https://vi.co/wp-json/mcp/mcp-oauth-server
+    status: 401
+  - url: https://api.vi.co/
+    status: 403

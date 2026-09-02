@@ -1,0 +1,63 @@
+generated: '2026-09-02'
+method: probed
+source: https://vi.co/.well-known/oauth-authorization-server
+name: Vi Labs authentication profile
+description: >-
+  Vi Labs publishes no developer documentation and no OpenAPI, so this profile
+  is built entirely from the two OAuth metadata documents the vi.co host serves
+  anonymously plus the challenge headers returned by its MCP endpoint. It
+  describes authentication to the MCP surface on vi.co only. The enterprise
+  platform host api.vi.co is an AWS API Gateway that returns 403
+  ForbiddenException to every anonymous request, publishes no metadata, and its
+  authentication scheme is therefore unknown.
+schemes:
+- id: mcp_oauth2
+  type: oauth2
+  flow: authorization_code
+  pkce:
+    required_methods: [S256]
+  issuer: https://vi.co
+  authorization_endpoint: https://vi.co/oauth/authorize
+  token_endpoint: https://vi.co/oauth/token
+  revocation_endpoint: https://vi.co/oauth/revoke
+  grant_types: [authorization_code, refresh_token]
+  response_types: [code]
+  token_endpoint_auth_methods: [none]
+  scopes: [mcp]
+  client_registration: >-
+    client_id_metadata_document_supported=true — clients identify themselves
+    with a hosted client_id metadata document rather than pre-registration.
+  bearer_methods: [header]
+  applies_to:
+  - https://vi.co/wp-json/mcp/mcp-oauth-server
+  evidence:
+  - url: https://vi.co/.well-known/oauth-authorization-server
+    status: 200
+  - url: https://vi.co/.well-known/oauth-protected-resource
+    status: 200
+  - url: https://vi.co/wp-json/mcp/mcp-oauth-server
+    status: 401
+    note: 'WWW-Authenticate: Bearer realm="https://vi.co", resource_metadata="https://vi.co/.well-known/oauth-protected-resource"'
+unknown_surfaces:
+- host: api.vi.co
+  observed_status: 403
+  observed_body: '{"message":"Forbidden"}'
+  note: >-
+    AWS API Gateway (x-amzn-errortype: ForbiddenException). No WWW-Authenticate
+    header, no metadata document, no public documentation — the authentication
+    scheme cannot be determined without a customer contract.
+standards:
+- rfc: RFC 8414
+  name: OAuth 2.0 Authorization Server Metadata
+  observed: true
+- rfc: RFC 9728
+  name: OAuth 2.0 Protected Resource Metadata
+  observed: true
+- rfc: RFC 7636
+  name: 'PKCE (S256)'
+  observed: true
+- rfc: RFC 6750
+  name: Bearer Token Usage
+  observed: true
+x-evidence:
+  fetched: '2026-09-02'

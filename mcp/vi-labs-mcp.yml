@@ -1,0 +1,84 @@
+generated: '2026-09-02'
+method: probed
+source: https://vi.co/.well-known/oauth-protected-resource
+name: Vi Labs MCP Server
+description: >-
+  Vi Labs serves a live, OAuth-protected Model Context Protocol endpoint from
+  its own host at https://vi.co/wp-json/mcp/mcp-oauth-server. It was discovered
+  through RFC 9728 protected resource metadata published at
+  /.well-known/oauth-protected-resource, and confirmed by a JSON-RPC POST that
+  returned HTTP 401 with a compliant
+  WWW-Authenticate: Bearer realm="https://vi.co",
+  resource_metadata="https://vi.co/.well-known/oauth-protected-resource" header.
+  The server is the WordPress MCP adapter running on the vi.co corporate site,
+  not the gated enterprise health platform behind api.vi.co. Its tool list is
+  authenticated-only, so no tool schemas could be read anonymously.
+deployment:
+  mode: remote
+  endpoint: https://vi.co/wp-json/mcp/mcp-oauth-server
+  install: ''
+  package: ''
+  auth: oauth
+  verified: probed
+servers:
+- name: mcp-oauth-server
+  endpoint: https://vi.co/wp-json/mcp/mcp-oauth-server
+  transport: streamable-http
+  methods_allowed: [POST, GET, DELETE]
+  auth: oauth
+  status: live-gated
+  probe:
+    method: 'POST tools/list (JSON-RPC 2.0)'
+    http_status: 401
+    body: '{"code":"mcp_unauthorized","message":"MCP authentication required.","data":{"status":401}}'
+    www_authenticate: 'Bearer realm="https://vi.co", resource_metadata="https://vi.co/.well-known/oauth-protected-resource"'
+    fetched: '2026-09-02'
+- name: mcp-adapter-default-server
+  endpoint: https://vi.co/wp-json/mcp/mcp-adapter-default-server
+  transport: streamable-http
+  methods_allowed: [POST, GET, DELETE]
+  auth: wordpress-session
+  status: live-gated
+  probe:
+    method: 'POST tools/list (JSON-RPC 2.0)'
+    http_status: 401
+    body: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that.","data":{"status":401}}'
+    fetched: '2026-09-02'
+discovery:
+- url: https://vi.co/wp-json/mcp
+  status: 200
+  note: Public WordPress REST route index for the mcp namespace; enumerates both servers.
+- url: https://vi.co/.well-known/oauth-protected-resource
+  status: 200
+- url: https://vi.co/.well-known/oauth-authorization-server
+  status: 200
+authorization:
+  issuer: https://vi.co
+  authorization_endpoint: https://vi.co/oauth/authorize
+  token_endpoint: https://vi.co/oauth/token
+  revocation_endpoint: https://vi.co/oauth/revoke
+  grant_types_supported: [authorization_code, refresh_token]
+  code_challenge_methods_supported: [S256]
+  scopes_supported: [mcp]
+  token_endpoint_auth_methods_supported: [none]
+  dynamic_client_registration: client_id_metadata_document_supported
+tools:
+  status: not-readable
+  count: null
+  note: >-
+    tools/list requires a bearer token. No anonymous tool list, and Vi Labs
+    publishes no llms.txt or developer documentation from which names could be
+    read, so no tool inventory is recorded. Schemas need authenticated
+    introspection.
+x-evidence:
+  fetched: '2026-09-02'
+  probes:
+  - url: https://vi.co/wp-json/mcp/mcp-oauth-server
+    method: POST
+    http_status: 401
+  - url: https://vi.co/wp-json/mcp/mcp-adapter-default-server
+    method: POST
+    http_status: 401
+  - url: https://vi.co/wp-json/mcp
+    method: GET
+    http_status: 200

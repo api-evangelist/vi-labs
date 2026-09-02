@@ -1,0 +1,30 @@
+generated: '2026-09-02'
+method: probed
+source: https://vi.co/.well-known/oauth-authorization-server
+name: Vi Labs OAuth scopes
+description: >-
+  The only OAuth scope Vi Labs publishes is the single coarse `mcp` scope
+  advertised in both its authorization server metadata and its protected
+  resource metadata. There is no scopes or permissions reference page — Vi Labs
+  publishes no developer documentation at all — so this is the complete
+  published scope surface, not a sample of it.
+authorization_server: https://vi.co
+docs: null
+docs_note: No published scopes/permissions reference exists on vi.co.
+scope_count: 1
+scopes:
+- name: mcp
+  description: >-
+    Access to the Vi Labs Model Context Protocol server at
+    https://vi.co/wp-json/mcp/mcp-oauth-server. The provider publishes no
+    breakdown of what the scope grants; granularity below this scope is not
+    documented.
+  source: scopes_supported in RFC 8414 + RFC 9728 metadata
+  operations: []
+x-evidence:
+  fetched: '2026-09-02'
+  probes:
+  - url: https://vi.co/.well-known/oauth-authorization-server
+    status: 200
+  - url: https://vi.co/.well-known/oauth-protected-resource
+    status: 200

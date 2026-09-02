@@ -1,0 +1,41 @@
+generated: '2026-09-02'
+method: probed
+source: https://vi.co/page-sitemap.xml
+name: Vi Labs API lifecycle
+description: >-
+  Vi Labs publishes none of the operational lifecycle surfaces an integrator
+  needs: no status page, no changelog or release notes, no versioning policy and
+  no deprecation policy. status.vi.co does not resolve in DNS, and the complete
+  24-page site inventory in the Yoast sitemap contains no changelog, status or
+  developer page. This artifact records those absences with the probe that
+  established each one; no lifecycle pointer is emitted in apis.yml, because
+  there is nothing for one to point at.
+status_page:
+  published: false
+  probes:
+  - url: https://status.vi.co/
+    status: null
+    note: NXDOMAIN — the host does not resolve.
+change_log:
+  published: false
+  probes:
+  - url: https://vi.co/page-sitemap.xml
+    status: 200
+    note: No changelog, release-notes or what's-new page in the site's own sitemap.
+deprecation_policy:
+  published: false
+  sunset_header_observed: false
+  note: >-
+    RFC 8594 Sunset / Deprecation headers were not present on any anonymous
+    response; with no documented API there is no deprecation policy to read.
+versioning_policy:
+  published: false
+  observed: >-
+    The MCP route namespace (/wp-json/mcp) is unversioned, while sibling
+    WordPress namespaces carry /v1 and /v2 segments.
+sla:
+  published: false
+  note: Any SLA is presumably contractual; nothing is published.
+deprecated_operations: []
+x-evidence:
+  fetched: '2026-09-02'

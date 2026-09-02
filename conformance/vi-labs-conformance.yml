@@ -1,0 +1,125 @@
+generated: '2026-09-02'
+method: probed
+source: https://vi.co/.well-known/oauth-authorization-server
+name: Vi Labs standards conformance
+description: >-
+  What Vi Labs demonstrably conforms to, read from documents its own hosts serve
+  rather than from marketing prose. The OAuth/MCP family is asserted from live
+  metadata and challenge headers. The healthcare compliance frameworks are
+  asserted from the company's SafeBase trust center at trust.vi.co, which names
+  them; they are organizational certifications, not contract-level conformance.
+standards:
+- id: oauth2
+  name: OAuth 2.0 (RFC 6749) authorization code + refresh token
+  conforms: true
+  evidence:
+    url: https://vi.co/.well-known/oauth-authorization-server
+    status: 200
+    detail: 'grant_types_supported: [authorization_code, refresh_token]; response_types_supported: [code]'
+- id: rfc8414
+  name: OAuth 2.0 Authorization Server Metadata
+  conforms: true
+  evidence:
+    url: https://vi.co/.well-known/oauth-authorization-server
+    status: 200
+    detail: Document served at the RFC 8414 path with issuer, authorization_endpoint and token_endpoint.
+- id: rfc9728
+  name: OAuth 2.0 Protected Resource Metadata
+  conforms: true
+  evidence:
+    url: https://vi.co/.well-known/oauth-protected-resource
+    status: 200
+    detail: >-
+      resource https://vi.co/wp-json/mcp/mcp-oauth-server, authorization_servers
+      [https://vi.co]; the MCP endpoint also returns the matching
+      WWW-Authenticate resource_metadata challenge on 401.
+- id: rfc7636
+  name: 'PKCE (S256)'
+  conforms: true
+  evidence:
+    url: https://vi.co/.well-known/oauth-authorization-server
+    status: 200
+    detail: 'code_challenge_methods_supported: [S256]'
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  evidence:
+    url: https://vi.co/wp-json/mcp/mcp-oauth-server
+    status: 401
+    detail: >-
+      JSON-RPC 2.0 endpoint answering POST/GET/DELETE and returning an
+      MCP-specific unauthorized envelope with an RFC 9728 challenge. Protocol
+      version could not be read without a token.
+- id: oidc
+  name: OpenID Connect Discovery
+  conforms: false
+  evidence:
+    url: https://vi.co/.well-known/openid-configuration
+    status: 404
+    detail: No OpenID Provider configuration is served; the issuer supports plain OAuth 2.0 only.
+- id: rfc9116
+  name: 'security.txt (RFC 9116)'
+  conforms: false
+  evidence:
+    url: https://vi.co/.well-known/security.txt
+    status: 404
+    detail: No security.txt on any Vi Labs host probed.
+- id: rfc9457
+  name: 'Problem Details for HTTP APIs (RFC 9457)'
+  conforms: false
+  evidence:
+    url: https://vi.co/wp-json/mcp/mcp-oauth-server
+    status: 401
+    detail: >-
+      Errors are returned as WordPress REST envelopes
+      ({code, message, data.status}) with content-type application/json, not
+      application/problem+json.
+domain_standards:
+- id: fhir
+  name: 'HL7 FHIR'
+  conforms: false
+  evidence:
+    url: https://vi.co/
+    status: 200
+    detail: >-
+      Vi Labs operates in healthcare/life-sciences, where FHIR is the domain
+      standard, but publishes no contract at all — no CapabilityStatement, no
+      /metadata endpoint, no OpenAPI. Absence of evidence, not evidence of
+      non-support; reward-only check, so no penalty is implied.
+compliance_programs:
+- id: soc2-type2
+  name: SOC 2 Type 2
+  conforms: true
+  evidence:
+    url: https://trust.vi.co/
+    status: 403
+    detail: >-
+      Named on the company's SafeBase-hosted trust center (trust.vi.co CNAMEs to
+      vi.portals.safebase.io). The host returns a Cloudflare bot challenge (403)
+      to a plain crawler; the page renders for a browser client.
+- id: iso-27001
+  name: 'ISO/IEC 27001:2022'
+  conforms: true
+  evidence:
+    url: https://trust.vi.co/
+    status: 403
+- id: iso-27701
+  name: 'ISO/IEC 27701:2019'
+  conforms: true
+  evidence:
+    url: https://trust.vi.co/
+    status: 403
+- id: hipaa
+  name: HIPAA
+  conforms: true
+  evidence:
+    url: https://trust.vi.co/
+    status: 403
+- id: hitrust
+  name: HITRUST
+  conforms: true
+  evidence:
+    url: https://trust.vi.co/
+    status: 403
+x-evidence:
+  fetched: '2026-09-02'

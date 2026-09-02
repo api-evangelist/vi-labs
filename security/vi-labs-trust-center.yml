@@ -1,0 +1,50 @@
+generated: '2026-09-02'
+method: searched
+probe: true
+source: https://trust.vi.co/
+url: https://trust.vi.co/
+name: Vi Labs Trust Center
+description: >-
+  Vi Labs runs a SafeBase-hosted trust center at trust.vi.co (CNAME to
+  vi.portals.safebase.io). It is the company's only published security surface —
+  there is no security.txt, no /security page and no bug bounty program on any
+  Vi Labs host. The portal sits behind a Cloudflare bot challenge, so a plain
+  crawler receives HTTP 403; the page renders for a browser client, and the
+  certifications below were read from that rendered page.
+host: trust.vi.co
+platform: SafeBase
+certifications:
+- SOC 2 Type 2
+- ISO/IEC 27001:2022
+- ISO/IEC 27701:2019
+- HIPAA
+- HITRUST
+sections_observed:
+- App Security
+- Responsible Disclosure
+responsible_disclosure:
+  referenced: true
+  contact_published: false
+  note: >-
+    The trust center references responsible disclosure, but no contact address
+    or policy URL is exposed outside the portal, and no security.txt is served
+    (https://vi.co/.well-known/security.txt -> 404). No VulnerabilityDisclosure
+    artifact or Security pointer is emitted, because nothing publicly resolvable
+    was found.
+evidence:
+- source: https://trust.vi.co/
+  http_status: 403
+  status_note: Cloudflare bot challenge to a plain crawler; page exists and renders for a browser.
+  keywords:
+  - soc 2 type 2
+  - iso/iec 27001:2022
+  - iso/iec 27701:2019
+  - hipaa
+  - hitrust
+  - trust center
+- source: https://vi.co/.well-known/security.txt
+  http_status: 404
+- source: dig trust.vi.co
+  result: vi.portals.safebase.io
+x-evidence:
+  fetched: '2026-09-02'

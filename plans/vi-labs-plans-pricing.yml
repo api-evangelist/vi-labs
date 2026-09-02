@@ -1,0 +1,24 @@
+generated: '2026-09-02'
+method: searched
+source: https://vi.co/contact-vi/
+name: Vi Labs plans and pricing
+description: >-
+  Vi Labs publishes no pricing. Its full page inventory (from the Yoast sitemap
+  at https://vi.co/page-sitemap.xml, 24 pages) contains no pricing, plans or
+  packaging page; https://vi.co/pricing/ returns 404. The company sells an
+  enterprise platform to health systems, payers, biopharma and wellness
+  organizations through a sales motion — "Contact Vi" is the only route to a
+  price — so plan_count is an honest zero, not an unread page.
+plan_count: 0
+plans: []
+model: enterprise-contact-sales
+contact: https://vi.co/contact-vi/
+x-evidence:
+  fetched: '2026-09-02'
+  probes:
+  - url: https://vi.co/pricing/
+    status: 404
+  - url: https://vi.co/page-sitemap.xml
+    status: 200
+  - url: https://vi.co/contact-vi/
+    status: 200

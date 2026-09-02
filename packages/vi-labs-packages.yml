@@ -1,0 +1,29 @@
+generated: '2026-09-02'
+method: searched
+source: 'https://registry.npmjs.org/-/v1/search, https://pypi.org/pypi, https://github.com/vi-technologies'
+name: Vi Labs client packages
+description: >-
+  No first-party Vi Labs client library exists in any public package registry.
+  npm search, PyPI direct lookups and the company's own GitHub organization
+  (github.com/vi-technologies, name "Vi Labs", blog https://vi.co/) were all
+  checked; the org holds three public repositories — two hiring take-home
+  assignments and a fork of actions/cache — and ships no SDK. This is a checked
+  absence, not an unchecked field.
+package_count: 0
+official_count: 0
+packages: []
+registries_checked:
+- registry: npm
+  query: 'search text=vi-labs; direct lookup @vi-labs/sdk'
+  result: no first-party package
+  status: 404
+- registry: pypi
+  query: 'vi-labs, vilabs'
+  result: no package
+  status: 404
+- registry: github
+  query: https://github.com/vi-technologies
+  result: '3 public repos, none a client library'
+  status: 200
+x-evidence:
+  fetched: '2026-09-02'
