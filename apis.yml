@@ -1,21 +1,16 @@
 aid: vi-labs
 name: Vi Labs
-description: >-
-  Vi Labs (vi.co) is a New York-headquartered enterprise AI company for health,
-  founded in 2011 and led by co-founder and CEO Omri Yoffe, with offices in
-  Brooklyn, Los Angeles, Boston and Tel Aviv. Its platform is an AI
-  orchestration layer for healthcare systems, payers, biopharma and wellness
-  enterprises, built on the Vi Data Web — a privacy-safe network of de-identified
-  patient and member profiles enriched with behavioral and consumer signals —
-  and delivered through four applications: Vi Activate (patient acquisition and
-  targeting), Vi Engage (predictive patient and provider engagement), Vi Operate
-  (an agentic suite for operational workflows) and Vi Pulse (analytics and ROI
-  reporting). The company says it serves more than 100 enterprise customers and
-  supports over 190 million lives, and in May 2026 it completed a $145M
-  transaction at a $1.64B valuation. Vi Labs publishes no developer program,
-  documentation or machine-readable API contract; its only anonymously reachable
-  machine surface is an OAuth-protected Model Context Protocol endpoint served
-  from vi.co and advertised through RFC 8414 and RFC 9728 metadata.
+description: 'Vi Labs (vi.co) is a New York-headquartered enterprise AI company for health, founded in
+  2011 and led by co-founder and CEO Omri Yoffe, with offices in Brooklyn, Los Angeles, Boston and Tel
+  Aviv. Its platform is an AI orchestration layer for healthcare systems, payers, biopharma and wellness
+  enterprises, built on the Vi Data Web — a privacy-safe network of de-identified patient and member profiles
+  enriched with behavioral and consumer signals — and delivered through four applications: Vi Activate
+  (patient acquisition and targeting), Vi Engage (predictive patient and provider engagement), Vi Operate
+  (an agentic suite for operational workflows) and Vi Pulse (analytics and ROI reporting). The company
+  says it serves more than 100 enterprise customers and supports over 190 million lives, and in May 2026
+  it completed a $145M transaction at a $1.64B valuation. Vi Labs publishes no developer program, documentation
+  or machine-readable API contract; its only anonymously reachable machine surface is an OAuth-protected
+  Model Context Protocol endpoint served from vi.co and advertised through RFC 8414 and RFC 9728 metadata.'
 image: https://vi.co/wp-content/uploads/2023/12/vi-social-share-light.png
 url: https://raw.githubusercontent.com/api-evangelist/vi-labs/refs/heads/main/apis.yml
 x-type: company
@@ -36,23 +31,36 @@ tags:
 - Patient Engagement
 - Enterprise AI
 - AI Agents
+- MCP
+- Data
+tags_raw:
+- Company
+- Artificial Intelligence
+- Health
+- Healthcare
+- Life Sciences
+- Pharmaceuticals
+- Patient Engagement
+- Enterprise AI
+- AI Agents
 - Model Context Protocol
 - Data
 apis:
-- aid: vi-labs-mcp
+- aid: vi-labs:vi-labs-mcp
   name: Vi Labs MCP Server
-  description: >-
-    An OAuth-protected Model Context Protocol endpoint served from the vi.co
-    host and advertised through RFC 9728 protected resource metadata. It is the
-    WordPress MCP adapter running on the Vi Labs corporate site — not the gated
-    enterprise health platform behind api.vi.co — and it is the only Vi Labs
-    surface an agent can address anonymously enough to discover. A JSON-RPC
-    tools/list POST returns HTTP 401 with a compliant WWW-Authenticate bearer
-    challenge, so the tool inventory and its input schemas require authenticated
-    introspection.
+  description: An OAuth-protected Model Context Protocol endpoint served from the vi.co host and advertised
+    through RFC 9728 protected resource metadata. It is the WordPress MCP adapter running on the Vi Labs
+    corporate site — not the gated enterprise health platform behind api.vi.co — and it is the only Vi
+    Labs surface an agent can address anonymously enough to discover. A JSON-RPC tools/list POST returns
+    HTTP 401 with a compliant WWW-Authenticate bearer challenge, so the tool inventory and its input schemas
+    require authenticated introspection.
   humanURL: https://vi.co/
   baseURL: https://vi.co/wp-json/mcp/mcp-oauth-server
   tags:
+  - MCP
+  - AI Agents
+  - Authentication
+  tags_raw:
   - Model Context Protocol
   - AI Agents
   - OAuth
