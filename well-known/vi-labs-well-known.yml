@@ -2,24 +2,21 @@ generated: '2026-09-02'
 method: probed
 source: https://vi.co/.well-known/
 name: Vi Labs well-known documents
-description: >-
-  Probe of the RFC 8615 /.well-known/ namespace on every Vi Labs host reachable
-  from apis.yml. vi.co (and its www alias) serves live OAuth 2.0 authorization
-  server metadata (RFC 8414) and OAuth 2.0 protected resource metadata
-  (RFC 9728) that together advertise a Model Context Protocol server at
-  https://vi.co/wp-json/mcp/mcp-oauth-server. The product API host api.vi.co is
-  an AWS API Gateway that answers every path with 403 ForbiddenException, so no
-  document could be read there.
+description: Probe of the RFC 8615 /.well-known/ namespace on every Vi Labs host reachable from apis.yml.
+  vi.co (and its www alias) serves live OAuth 2.0 authorization server metadata (RFC 8414) and OAuth 2.0
+  protected resource metadata (RFC 9728) that together advertise a Model Context Protocol server at https://vi.co/wp-json/mcp/mcp-oauth-server.
+  The product API host api.vi.co is an AWS API Gateway that answers every path with 403 ForbiddenException,
+  so no document could be read there.
 hosts:
 - host: vi.co
   documents:
   - path: /.well-known/oauth-authorization-server
     status: 200
-    file: well-known/vi-labs-oauth-authorization-server.json
+    file: vi-labs-oauth-authorization-server.json
     note: RFC 8414 authorization server metadata; issuer https://vi.co, scopes_supported [mcp], PKCE S256.
   - path: /.well-known/oauth-protected-resource
     status: 200
-    file: well-known/vi-labs-oauth-protected-resource.json
+    file: vi-labs-oauth-protected-resource.json
     note: RFC 9728 protected resource metadata naming https://vi.co/wp-json/mcp/mcp-oauth-server.
   - path: /.well-known/security.txt
     status: 404
@@ -37,11 +34,11 @@ hosts:
   documents:
   - path: /.well-known/oauth-authorization-server
     status: 200
-    file: well-known/vi-labs-oauth-authorization-server.json
+    file: vi-labs-oauth-authorization-server.json
     note: Identical body to the apex host; same WordPress origin.
   - path: /.well-known/oauth-protected-resource
     status: 200
-    file: well-known/vi-labs-oauth-protected-resource.json
+    file: vi-labs-oauth-protected-resource.json
   - path: /.well-known/security.txt
     status: 404
   - path: /.well-known/openid-configuration
@@ -75,4 +72,4 @@ hosts:
     status: 403
 x-evidence:
   fetched: '2026-09-02'
-  probe: 'curl -L, browser User-Agent, one attempt per URL'
+  probe: curl -L, browser User-Agent, one attempt per URL
