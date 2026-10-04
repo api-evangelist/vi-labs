@@ -75,6 +75,9 @@ apis:
     url: conventions/vi-labs-conventions.yml
   - type: RateLimits
     url: rate-limits/vi-labs-rate-limits.yml
+  x-surface: platform-generated
+  x-platform: wordpress
+  x-platform-surface: mcp-plugin
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
