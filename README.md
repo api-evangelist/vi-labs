@@ -1,4 +1,4 @@
-# VI
+# Vi Labs
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,5 +64,115 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-VI is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.hiive.com/securities/vi-labs-stock
+Vi Labs (vi.co) is a New York-headquartered enterprise AI company for health, founded in 2011 and led by co-founder and CEO Omri Yoffe, with offices in Brooklyn, Los Angeles, Boston and Tel Aviv. Its platform is an AI orchestration layer for healthcare systems, payers, biopharma and wellness enterprises, built on the Vi Data Web — a privacy-safe network of de-identified patient and member profiles enriched with behavioral and consumer signals — and delivered through four applications: Vi Activate (patient acquisition and targeting), Vi Engage (predictive patient and provider engagement), Vi Operate (an agentic suite for operational workflows) and Vi Pulse (analytics and ROI reporting). The company says it serves more than 100 enterprise customers and supports over 190 million lives, and in May 2026 it completed a $145M transaction at a $1.64B valuation. Vi Labs publishes no developer program, documentation or machine-readable API contract; its only anonymously reachable machine surface is an OAuth-protected Model Context Protocol endpoint served from vi.co and advertised through RFC 8414 and RFC 9728 metadata.
+
+**Areas:** Company · Artificial Intelligence · Health · Healthcare · Life Sciences · Pharmaceuticals · Patient Engagement · Enterprise AI · AI Agents · MCP · Data
+
+## Vi Labs on APIs.io
+
+Everything profiled for Vi Labs is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/vi-labs/](https://apis.io/providers/vi-labs/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Vi Labs MCP Server](https://apis.io/apis/vi-labs/vi-labs-mcp/) — An OAuth-protected Model Context Protocol endpoint served from the vi.co host and advertised through RFC 9728 protected resource metadata. It is the…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [Vi Labs MCP Server](https://apis.io/servers/vi-labs/vi-labs-mcp-server/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Vi Labs Authentication](https://apis.io/security/vi-labs/vi-labs-authentication/)
+- [Vi Labs Domain Security](https://apis.io/security/vi-labs/vi-labs-domain-security/)
+- [Vi Labs Trust Center](https://apis.io/security/vi-labs/vi-labs-trust-center/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Vi Labs Scopes](https://apis.io/scopes/vi-labs/vi-labs-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Vi Labs Plans Pricing](https://apis.io/plans/vi-labs/vi-labs-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Vi Labs Rate Limits](https://apis.io/rate-limits/vi-labs/vi-labs-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://vi.co/)
+- [Blog](https://vi.co/learn/blog/)
+- [Terms of service](https://vi.co/terms-of-use/)
+- [Privacy policy](https://vi.co/privacy-policy/)
+- [GitHub](https://github.com/vi-technologies)
+
+## API Evangelist rating
+
+**Kin Score 23.6** — emerging · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 14.3 |
+| Access clarity | 36.8 |
+
+**Agent readiness 19.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 34.6** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/vi-labs/](https://apis.io/providers/vi-labs/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Vi Labs: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/vi-labs/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
